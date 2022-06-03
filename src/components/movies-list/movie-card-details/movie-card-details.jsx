@@ -1,9 +1,16 @@
 import React from "react";
+import { useGlobalContext } from "../../../services/global-state";
 import Rating from "./rate";
-import styles from "./movie-card-details.module.scss";
 import { AiFillCloseCircle } from "react-icons/ai";
+import posterNotFound from "../../../assets/poster-holder.jpg";
+import styles from "./movie-card-details.module.scss";
 
-const MovieCardDetails = ({ onClose }) => {
+const MovieCardDetails = ({
+  data: { title, overview, poster_path, release_date, original_language },
+  onClose,
+}) => {
+  const [{ configurations }] = useGlobalContext();
+
   return (
     <div className={styles.MovieCardDetails}>
       <div>
@@ -13,16 +20,16 @@ const MovieCardDetails = ({ onClose }) => {
         <main>
           <figure
             style={{
-              backgroundImage:
-                "url('https://image.tmdb.org/t/p/original/jrgifaYeUtTnaH7NF5Drkgjg2MB.jpg')",
+              backgroundImage: `url('${
+                poster_path
+                  ? configurations.baseImagesUrl + poster_path
+                  : posterNotFound
+              }')`,
             }}
           ></figure>
           <aside>
-            <h1>The Hunger Games: Mockingjay - Part 1</h1>
-            <p>
-              Katniss Everdeen reluctantly becomes the symbol of a mass
-              rebellion against the autocratic Capitol.
-            </p>
+            <h1>{title}</h1>
+            <p>{overview}</p>
             <article>
               <div>
                 <p>
@@ -55,6 +62,10 @@ const MovieCardDetails = ({ onClose }) => {
       </div>
     </div>
   );
+};
+
+MovieCardDetails.defaultProps = {
+  data: {},
 };
 
 export default MovieCardDetails;

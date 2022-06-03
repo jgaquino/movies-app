@@ -6,6 +6,7 @@ div.MovieCard {
   border: 1px solid #121212;
   border-radius: 10px;
   color: white;
+  cursor: pointer;
 
   span {
     display: block;
@@ -19,7 +20,7 @@ div.MovieCard {
     &:after {
       content: "";
       display: block;
-      padding-top: 100%;
+      padding-top: 150%;
     }
   }
   h3 {

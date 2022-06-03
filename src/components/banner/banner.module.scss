@@ -23,17 +23,18 @@ header.Banner {
       max-width: 800px;
       border-radius: 10px;
 
-      h5 {
+      > h5 {
         font-weight: 300;
         line-height: 0;
         margin-bottom: 4px;
       }
-      h1 {
+      > h1 {
         font-weight: 700;
       }
-      p {
-        margin-top: 20px;
-        margin-bottom: 20px;
+      > p {
+      }
+      > hr {
+        margin: 20px 0 5px;
       }
 
       > div {
@@ -42,8 +43,12 @@ header.Banner {
         flex-wrap: wrap;
 
         > div {
+          > p {
+            margin-top: 15px;
+          }
           &:first-child {
             text-align: left;
+            margin-right: 30px;
           }
           &:last-child {
             text-align: right;
@@ -85,24 +90,11 @@ header.Banner {
       margin: 0;
 
       > main {
-        color: white;
-        background-color: #222;
-        opacity: 0.9;
-        padding: 50px;
-        max-width: 800px;
-        border-radius: 10px;
+        padding: 40px 15px;
 
-        h5 {
-          font-weight: 300;
-          line-height: 0;
-          margin-bottom: 4px;
-        }
-        h1 {
-          font-weight: 700;
-        }
-        p {
+        > p {
           margin-top: 20px;
-          margin-bottom: 20px;
+          margin-bottom: 0;
         }
 
         > div {
@@ -111,11 +103,8 @@ header.Banner {
           flex-wrap: wrap;
 
           > div {
-            &:first-child {
-              text-align: left;
-            }
             &:last-child {
-              text-align: right;
+              text-align: left;
             }
           }
         }
