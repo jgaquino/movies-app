@@ -1,0 +1,39 @@
+div.MovieCard {
+  max-width: 370px;
+  width: 100%;
+  background-color: #222;
+  padding: 20px;
+  border: 1px solid #121212;
+  border-radius: 10px;
+  color: white;
+
+  span {
+    display: block;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    &:after {
+      content: "";
+      display: block;
+      padding-top: 100%;
+    }
+  }
+  h3 {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 22px;
+  }
+  > div {
+    display: flex;
+    justify-content: space-between;
+    opacity: 0.8;
+
+    p {
+      font-size: 14px;
+    }
+  }
+}

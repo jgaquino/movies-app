@@ -1,0 +1,25 @@
+@mixin copyright {
+  > figure {
+    display: flex;
+    align-items: center;
+    span {
+      display: block;
+      background-color: white;
+      border-radius: 2px;
+      padding: 5px 3px 1px 5px;
+
+      img {
+        width: 30px;
+      }
+    }
+    h1 {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 16px;
+      margin-left: 10px;
+
+      a {
+        color: white;
+      }
+    }
+  }
+}

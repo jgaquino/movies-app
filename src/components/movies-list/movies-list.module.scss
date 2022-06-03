@@ -1,0 +1,11 @@
+article.MoviesList {
+  background-color: #111;
+  padding-top: 50px;
+
+  > div {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 50px;
+  }
+}
