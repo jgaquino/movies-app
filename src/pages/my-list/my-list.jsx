@@ -11,7 +11,7 @@ const MyList = () => {
   return (
     <div>
       <Topbar location="my-list" />
-      <MoviesList movies={reviewMovies} />
+      <MoviesList location="my-list" movies={reviewMovies} />
       <Footer />
     </div>
   );

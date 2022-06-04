@@ -53,6 +53,7 @@ const Home = () => {
         <Banner movie={movieHighlighted} />
       )}
       <MoviesList
+        location="home"
         movies={moviesFiltered === undefined ? movies : moviesFiltered}
         loading={loading}
       />

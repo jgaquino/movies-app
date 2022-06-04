@@ -3,8 +3,9 @@ import MovieCard from "./movie-card/movie-card";
 import MovieCardDetails from "./movie-card-details";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import styles from "./movies-list.module.scss";
+import { Link } from "react-router-dom";
 
-const MoviesList = ({ movies, loading }) => {
+const MoviesList = ({ location, movies, loading }) => {
   const [movieId, setMovieId] = useState(null);
 
   return (
@@ -36,8 +37,14 @@ const MoviesList = ({ movies, loading }) => {
                 )}
               </div>
             )}
-            {movies && movies.length === 0 && (
+            {movies && movies.length === 0 && location === "home" && (
               <h6>Sorry! no results found...</h6>
+            )}
+            {movies && movies.length === 0 && location === "my-list" && (
+              <h6>
+                You don't rated any movie yet.{" "}
+                <Link to="/">Go back to the movies list</Link>
+              </h6>
             )}
           </>
         )}

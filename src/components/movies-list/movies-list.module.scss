@@ -14,6 +14,10 @@ article.MoviesList {
     color: white;
     display: block;
     height: calc(100vh - (208px + 86px));
+
+    a {
+      color: white;
+    }
   }
   > span {
     display: flex;
