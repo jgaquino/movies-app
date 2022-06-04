@@ -35,7 +35,6 @@ const MoviesList = ({ movies }) => {
               popularity,
               id,
             } = movies.find((m) => m.id === movieId);
-            console.log(movies.find((m) => m.id === movieId));
             return {
               title,
               overview,

@@ -1,52 +1,66 @@
+import React from "react";
+import posterNotFound from "../../assets/poster-holder.jpg";
+import { useGlobalContext } from "../../services/global-state";
 import styles from "./banner.module.scss";
 
-const Banner = () => {
+const Banner = ({
+  movie: {
+    title,
+    overview,
+    poster_path,
+    backdrop_path,
+    release_date,
+    original_language,
+    popularity,
+    vote_average,
+  },
+}) => {
+  const [{ configurations }] = useGlobalContext();
+
   return (
     <header
       className={styles.Banner}
       style={{
-        backgroundImage:
-          "url('https://image.tmdb.org/t/p/original/egoyMDLqCxzjnSrWOz50uLlJWmD.jpg')",
+        backgroundImage: `url('${
+          backdrop_path
+            ? configurations.baseImagesUrl + backdrop_path
+            : posterNotFound
+        }')`,
       }}
     >
       <div>
         <main>
-          <h5>2022-03-30</h5>
-          <h1>Sonic the Hedgehog 2</h1>
-          <p>
-            After settling in Green Hills, Sonic is eager to prove he has what
-            it takes to be a true hero. His test comes when Dr. Robotnik
-            returns, this time with a new partner, Knuckles, in search for an
-            emerald that has the power to destroy civilizations. Sonic teams up
-            with his own sidekick, Tails, and together they embark on a
-            globe-trotting journey to find the emerald before it falls into the
-            wrong hands.
-          </p>
+          <h5>{release_date}</h5>
+          <h1>{title}</h1>
+          <p>{overview}</p>
           <hr style={{ opacity: 0.1 }} />
 
           <div>
             <div>
               <p>
-                Popularity: <strong>99.716</strong>
+                Popularity: <strong>{popularity}</strong>
               </p>
               <p>
-                Vote average: <strong>99.716</strong>
+                Vote average: <strong>{vote_average}</strong>
               </p>
             </div>
             <div>
               <p>
-                Release date: <strong>2014-11-19</strong>
+                Release date: <strong>2{release_date}</strong>
               </p>
               <p>
-                Language: <strong>EN</strong>
+                Language: <strong>{original_language}</strong>
               </p>
             </div>
           </div>
         </main>
         <span
           style={{
-            backgroundImage:
-              "url('https://image.tmdb.org/t/p/original/jrgifaYeUtTnaH7NF5Drkgjg2MB.jpg')",
+            backgroundImage: `url('${
+              poster_path
+                ? configurations.baseImagesUrl + poster_path
+                : posterNotFound
+            }')`,
           }}
         />
       </div>

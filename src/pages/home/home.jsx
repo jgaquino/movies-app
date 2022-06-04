@@ -8,10 +8,14 @@ import { useGlobalContext } from "../../services/global-state";
 const Home = () => {
   const [{ movies }] = useGlobalContext();
 
+  const movieHighlighted = movies.reduce(function (prev, current) {
+    return prev.vote_average > current.vote_average ? prev : current;
+  });
+
   return (
     <>
       <Topbar location="home" />
-      <Banner />
+      <Banner movie={movieHighlighted} />
       <MoviesList movies={movies} />
       <Footer />
     </>

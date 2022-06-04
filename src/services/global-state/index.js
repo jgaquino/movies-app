@@ -14,7 +14,9 @@ export const GlobalContextProvider = ({ children }) => {
   useEffect(() => {
     fetchMovies()
       .then((movies) => {
-        dispatch(GLOBAL_STATE_SET_MOVIES(movies.results));
+        // filter movies that does not have backdrop_path
+        const moviesFiltered = movies.results.filter((m) => m.backdrop_path);
+        dispatch(GLOBAL_STATE_SET_MOVIES(moviesFiltered));
       })
       .catch((error) => {
         console.error(`[fetchMovies] ${error}`);
