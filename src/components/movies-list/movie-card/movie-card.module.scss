@@ -7,6 +7,13 @@ div.MovieCard {
   border-radius: 10px;
   color: white;
   cursor: pointer;
+  position: relative;
+  top: 0;
+  transition: 0.3s;
+
+  &:hover {
+    top: -5px;
+  }
 
   span {
     display: block;

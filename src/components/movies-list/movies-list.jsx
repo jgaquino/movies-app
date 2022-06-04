@@ -42,7 +42,8 @@ const MoviesList = ({ location, movies, loading }) => {
             )}
             {movies && movies.length === 0 && location === "my-list" && (
               <h6>
-                You don't rated any movie yet.{" "}
+                You don't rated any movie yet.
+                <br />
                 <Link to="/">Go back to the movies list</Link>
               </h6>
             )}

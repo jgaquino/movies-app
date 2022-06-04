@@ -46,7 +46,7 @@ const Banner = ({
             </div>
             <div>
               <p>
-                Release date: <strong>2{release_date}</strong>
+                Release date: <strong>{release_date}</strong>
               </p>
               <p>
                 Language: <strong>{original_language}</strong>
