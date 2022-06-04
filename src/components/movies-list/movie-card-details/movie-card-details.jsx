@@ -1,15 +1,36 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import { useGlobalContext } from "../../../services/global-state";
-import Rating from "./rate";
+import { GLOBAL_STATE_ADD_REVIEW } from "../../../services/global-state/global-state-reducer";
+import Rating from "./rating";
 import { AiFillCloseCircle } from "react-icons/ai";
 import posterNotFound from "../../../assets/poster-holder.jpg";
 import styles from "./movie-card-details.module.scss";
 
 const MovieCardDetails = ({
-  data: { title, overview, poster_path, release_date, original_language },
+  data: {
+    title,
+    overview,
+    poster_path,
+    release_date,
+    original_language,
+    adult,
+    popularity,
+    id,
+  },
   onClose,
 }) => {
-  const [{ configurations }] = useGlobalContext();
+  const [{ configurations, reviews }, dispatch] = useGlobalContext();
+  const [review, setReview] = useState({ rating: 3, message: "", id });
+
+  const reviewExist = reviews.find((r) => r.id === id);
+
+  const submitReview = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(GLOBAL_STATE_ADD_REVIEW(review));
+    },
+    [review]
+  );
 
   return (
     <div className={styles.MovieCardDetails}>
@@ -33,30 +54,50 @@ const MovieCardDetails = ({
             <article>
               <div>
                 <p>
-                  Release date: <strong>2014-11-19</strong>
+                  Release date: <strong>{release_date}</strong>
                 </p>
                 <p>
-                  Language: <strong>EN</strong>
+                  Language: <strong>{original_language}</strong>
                 </p>
               </div>
               <div>
                 <p>
-                  Family friendly: <strong>Si</strong>
+                  Family friendly: <strong>{adult ? "Si" : "No"}</strong>
                 </p>
                 <p>
-                  Popularity: <strong>105.437</strong>
+                  Popularity: <strong>{popularity}</strong>
                 </p>
               </div>
             </article>
             <hr />
-            <form>
-              <p>Your feedback</p>
-              <div>
-                <Rating />
-              </div>
-              <textarea></textarea>
-              <button>Send feedback</button>
-            </form>
+            {!reviewExist ? (
+              <form onSubmit={submitReview}>
+                <p>Your feedback</p>
+                <div>
+                  <Rating
+                    value={review.rating}
+                    onChange={(_, newRating) =>
+                      setReview((prevReview) => ({
+                        ...prevReview,
+                        rating: newRating,
+                      }))
+                    }
+                  />
+                </div>
+                <textarea
+                  value={review.message}
+                  onChange={(e) =>
+                    setReview((prevReview) => ({
+                      ...prevReview,
+                      message: e.target.value,
+                    }))
+                  }
+                ></textarea>
+                <button type="submit">Send feedback</button>
+              </form>
+            ) : (
+              <small>Thank you for your feedback :)</small>
+            )}
           </aside>
         </main>
       </div>

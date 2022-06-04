@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
+import { Link } from "react-router-dom";
 import styles from "./topbar.module.scss";
 
 const Topbar = ({ location }) => {
@@ -44,10 +45,10 @@ const Topbar = ({ location }) => {
                 />
               </div>
             </div>
-            <a href="">My List</a>
+            <Link to="/my-list">My List</Link>
           </>
         )}
-        {location === "my-list" && <a href="">Go back Home</a>}
+        {location === "my-list" && <Link to="/">Go back Home</Link>}
       </div>
     </nav>
   );

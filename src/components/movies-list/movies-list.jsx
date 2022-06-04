@@ -6,8 +6,6 @@ import styles from "./movies-list.module.scss";
 const MoviesList = ({ movies }) => {
   const [movieId, setMovieId] = useState(null);
 
-  console.log("movieId ", movieId);
-
   return (
     <>
       <article className={styles.MoviesList}>
@@ -29,10 +27,13 @@ const MoviesList = ({ movies }) => {
           data={(() => {
             const {
               title,
+              overview,
               poster_path,
               release_date,
               original_language,
-              overview,
+              adult,
+              popularity,
+              id,
             } = movies.find((m) => m.id === movieId);
             console.log(movies.find((m) => m.id === movieId));
             return {
@@ -41,6 +42,9 @@ const MoviesList = ({ movies }) => {
               poster_path,
               release_date,
               original_language,
+              adult,
+              popularity,
+              id,
             };
           })()}
           onClose={() => setMovieId(null)}

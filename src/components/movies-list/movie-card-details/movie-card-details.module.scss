@@ -12,14 +12,13 @@ div.MovieCardDetails {
 
   background: rgba(0, 0, 0, 0.5);
 
-  overflow-y: auto;
-
   > div {
     max-width: 800px;
     width: 100%;
     color: white;
     background-color: #222;
     padding: 0 20px 50px;
+    overflow-y: auto;
 
     > span {
       display: flex;
@@ -113,6 +112,16 @@ div.MovieCardDetails {
             }
           }
         }
+        > small {
+          display: block;
+          width: 100%;
+          font-size: 16px;
+          border: 2px dashed white;
+          padding: 10px;
+          text-align: center;
+          font-weight: 700;
+          border-radius: 5px;
+        }
       }
     }
   }
@@ -120,11 +129,9 @@ div.MovieCardDetails {
 
 @media (max-width: 800px) {
   div.MovieCardDetails {
-    min-height: 100vh;
-    height: 100%;
     > div {
       min-height: 100vh;
-      height: fit-content;
+      height: 100%;
 
       > main {
         flex-direction: column;
