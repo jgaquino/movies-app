@@ -17,7 +17,7 @@ export const globalStateReducer = (state, action) => {
     case ADD_REVIEW_ACTION:
       return {
         ...state,
-        reviews: [...state.reviews, { ...action.data }],
+        reviews: [{ ...action.data }, ...state.reviews],
       };
 
     default:
