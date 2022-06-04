@@ -3,13 +3,14 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import styles from "./topbar.module.scss";
 
-const Topbar = ({ location }) => {
+const Topbar = ({ location, onChangeSearchValue }) => {
   //search
   const inputSearchRef = useRef(null);
   const [searchOpened, setSearchOpened] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   useEffect(() => {
     searchValue !== "" ? setSearchOpened(true) : setSearchOpened(false);
+    onChangeSearchValue(searchValue);
   }, [searchValue]);
 
   return (
@@ -52,6 +53,10 @@ const Topbar = ({ location }) => {
       </div>
     </nav>
   );
+};
+
+Topbar.defaultProps = {
+  onChangeSearchValue: () => null,
 };
 
 export default Topbar;

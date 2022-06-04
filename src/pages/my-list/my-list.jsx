@@ -6,14 +6,12 @@ import { useGlobalContext } from "../../services/global-state";
 
 const MyList = () => {
   const [{ movies, reviews }] = useGlobalContext();
+  const reviewMovies = reviews.map((r) => r.movie);
 
-  const moviesWithReview = movies.filter((m) =>
-    reviews.find((r) => r.id === m.id)
-  );
   return (
     <div>
       <Topbar location="my-list" />
-      <MoviesList movies={moviesWithReview} />
+      <MoviesList movies={reviewMovies} />
       <Footer />
     </div>
   );

@@ -8,4 +8,29 @@ article.MoviesList {
     flex-wrap: wrap;
     gap: 50px;
   }
+  > h6 {
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    display: block;
+    height: calc(100vh - (208px + 86px));
+  }
+  > span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 80px;
+    height: calc(100vh - (208px + 86px));
+    animation: rotation 2s infinite linear;
+
+    @keyframes rotation {
+      from {
+        -webkit-transform: rotate(0deg);
+      }
+      to {
+        -webkit-transform: rotate(359deg);
+      }
+    }
+  }
 }

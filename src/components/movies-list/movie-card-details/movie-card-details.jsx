@@ -7,23 +7,11 @@ import posterNotFound from "../../../assets/poster-holder.jpg";
 import styles from "./movie-card-details.module.scss";
 import { useLocation } from "react-router-dom";
 
-const MovieCardDetails = ({
-  data: {
-    title,
-    overview,
-    poster_path,
-    release_date,
-    original_language,
-    adult,
-    popularity,
-    id,
-  },
-  onClose,
-}) => {
+const MovieCardDetails = ({ data, onClose }) => {
   const location = useLocation();
   const [{ configurations, reviews }, dispatch] = useGlobalContext();
-  const [review, setReview] = useState({ rating: 3, message: "", id });
-  const reviewExist = reviews.find((r) => r.id === id);
+  const [review, setReview] = useState({ rating: 3, message: "", movie: data });
+  const reviewExist = reviews.find((r) => r.movie.id === data.id);
 
   const submitReview = useCallback(
     (e) => {
@@ -43,30 +31,30 @@ const MovieCardDetails = ({
           <figure
             style={{
               backgroundImage: `url('${
-                poster_path
-                  ? configurations.baseImagesUrl + poster_path
+                data.poster_path
+                  ? configurations.baseImagesUrl + data.poster_path
                   : posterNotFound
               }')`,
             }}
           ></figure>
           <aside>
-            <h1>{title}</h1>
-            <p>{overview}</p>
+            <h1>{data.title}</h1>
+            <p>{data.overview}</p>
             <article>
               <div>
                 <p>
-                  Release date: <strong>{release_date}</strong>
+                  Release date: <strong>{data.release_date}</strong>
                 </p>
                 <p>
-                  Language: <strong>{original_language}</strong>
+                  Language: <strong>{data.original_language}</strong>
                 </p>
               </div>
               <div>
                 <p>
-                  Family friendly: <strong>{adult ? "Si" : "No"}</strong>
+                  Family friendly: <strong>{data.adult ? "Si" : "No"}</strong>
                 </p>
                 <p>
-                  Popularity: <strong>{popularity}</strong>
+                  Popularity: <strong>{data.popularity}</strong>
                 </p>
               </div>
             </article>
