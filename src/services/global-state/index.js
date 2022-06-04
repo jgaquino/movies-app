@@ -14,9 +14,7 @@ export const GlobalContextProvider = ({ children }) => {
   useEffect(() => {
     fetchMovies()
       .then((movies) => {
-        // filter movies that does not have backdrop_path
-        const moviesFiltered = movies.results.filter((m) => m.backdrop_path);
-        dispatch(GLOBAL_STATE_SET_MOVIES(moviesFiltered));
+        dispatch(GLOBAL_STATE_SET_MOVIES(movies));
       })
       .catch((error) => {
         console.error(`[fetchMovies] ${error}`);
@@ -25,11 +23,7 @@ export const GlobalContextProvider = ({ children }) => {
 
     fetchConfiguration()
       .then((configurations) => {
-        dispatch(
-          GLOBAL_STATE_SET_CONFIGURATIONS({
-            baseImagesUrl: `${configurations.images.base_url}${configurations.images.poster_sizes[6]}/`,
-          })
-        );
+        dispatch(GLOBAL_STATE_SET_CONFIGURATIONS(configurations));
       })
       .catch((error) => {
         console.error(`[fetchConfiguration] ${error}`);

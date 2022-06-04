@@ -5,7 +5,7 @@ import MoviesList from "../../components/movies-list";
 import { useGlobalContext } from "../../services/global-state";
 
 const MyList = () => {
-  const [{ movies, reviews }] = useGlobalContext();
+  const [{ reviews }] = useGlobalContext();
   const reviewMovies = reviews.map((r) => r.movie);
 
   return (

@@ -30,7 +30,7 @@ const Home = () => {
       fetchMovies(searchValue)
         .then((moviesSearched) => {
           setLoading(false);
-          setMoviesFiltered(moviesSearched.results);
+          setMoviesFiltered(moviesSearched);
         })
         .catch(() => {
           setLoading(false);
@@ -40,8 +40,6 @@ const Home = () => {
 
     return () => clearTimeout(timeout);
   }, [searchValue]);
-
-  console.log(loading);
 
   return (
     <>
