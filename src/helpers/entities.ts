@@ -1,29 +1,29 @@
-interface AppState {
- movies: IMovie[];
+export interface IAppState {
+ movies: IMovie[] | null;
  configurations: IConfigurations;
- reviews: string;
+ reviews: IReview[] | [];
 }
 
-interface IMovie {
+export interface IMovie {
  adult: boolean;
- backdrop_path: string | undefined;
+ backdrop_path: string | null;
  id: number;
  original_language: string;
  overview: string;
  popularity: number;
- poster_path: string | undefined;
+ poster_path: string | null;
  release_date: string;
  title: string;
  vote_average: number;
  vote_count: number; 
 }
 
-interface IConfigurations {
- baseImagesUrl: string;
+export interface IConfigurations {
+ baseImagesUrl: string | null;
 }
 
-interface IReview {
- rating: number;
+export interface IReview {
+ rating: number | null;
  message: string;
  movie: IMovie;
 }

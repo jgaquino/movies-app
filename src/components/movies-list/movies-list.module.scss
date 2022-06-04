@@ -2,6 +2,10 @@ article.MoviesList {
   background-color: #111;
   padding-top: 50px;
 
+  &.active {
+    height: calc(100vh - (86px + 208px) + 50px);
+  }
+
   > div {
     display: flex;
     justify-content: center;
@@ -13,7 +17,7 @@ article.MoviesList {
     font-size: 30px;
     color: white;
     display: block;
-    height: calc(100vh - (208px + 86px));
+    height: 100%;
 
     a {
       color: white;
@@ -23,10 +27,13 @@ article.MoviesList {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
-    font-size: 80px;
-    height: calc(100vh - (208px + 86px));
-    animation: rotation 2s infinite linear;
+    height: 100%;
+
+    svg {
+      font-size: 80px;
+      animation: rotation 2s infinite linear;
+      color: white;
+    }
 
     @keyframes rotation {
       from {

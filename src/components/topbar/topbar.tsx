@@ -3,14 +3,19 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import styles from "./topbar.module.scss";
 
-const Topbar = ({ location, onChangeSearchValue }) => {
+type Props = {
+  location: "home" | "my-list";
+  onChangeSearchValue?: (searchValue: string) => void;
+};
+
+const Topbar: React.FC<Props> = ({ location, onChangeSearchValue }) => {
   //search
-  const inputSearchRef = useRef(null);
-  const [searchOpened, setSearchOpened] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
+  const inputSearchRef = useRef<null | HTMLInputElement>(null);
+  const [searchOpened, setSearchOpened] = useState<boolean>(false);
+  const [searchValue, setSearchValue] = useState<string>("");
   useEffect(() => {
     searchValue !== "" ? setSearchOpened(true) : setSearchOpened(false);
-    onChangeSearchValue(searchValue);
+    onChangeSearchValue && onChangeSearchValue(searchValue);
   }, [searchValue]);
 
   return (
@@ -33,7 +38,7 @@ const Topbar = ({ location, onChangeSearchValue }) => {
               className={searchOpened ? styles.active : ""}
               onMouseEnter={() => {
                 setSearchOpened(true);
-                inputSearchRef.current.focus();
+                inputSearchRef.current && inputSearchRef.current.focus();
               }}
               onMouseLeave={() => searchValue === "" && setSearchOpened(false)}
             >
@@ -53,10 +58,6 @@ const Topbar = ({ location, onChangeSearchValue }) => {
       </div>
     </nav>
   );
-};
-
-Topbar.defaultProps = {
-  onChangeSearchValue: () => null,
 };
 
 export default Topbar;

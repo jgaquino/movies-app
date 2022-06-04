@@ -1,9 +1,12 @@
 import React from "react";
-import posterNotFound from "../../assets/poster-holder.jpg";
-import { useGlobalContext } from "../../services/global-state";
+import { IMovie } from "../../helpers/entities";
+import { useGlobalContext } from "../../services/global-state/context";
 import styles from "./banner.module.scss";
+import posterNotFound from "../../assets/poster-holder.jpg";
 
-const Banner = ({
+type IProps = { movie: IMovie; onClick?: () => void };
+
+const Banner: React.FC<IProps> = ({
   movie: {
     title,
     overview,
@@ -14,6 +17,7 @@ const Banner = ({
     popularity,
     vote_average,
   },
+  onClick,
 }) => {
   const [{ configurations }] = useGlobalContext();
 
@@ -55,6 +59,7 @@ const Banner = ({
           </div>
         </main>
         <span
+          onClick={onClick}
           style={{
             backgroundImage: `url('${
               poster_path

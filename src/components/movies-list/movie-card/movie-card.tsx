@@ -1,13 +1,14 @@
 import React from "react";
-import styles from "./movie-card.module.scss";
-import { useGlobalContext } from "../../../services/global-state";
+import { IMovie } from "../../../helpers/entities";
+import { useGlobalContext } from "../../../services/global-state/context";
 import posterNotFound from "../../../assets/poster-holder.jpg";
+import styles from "./movie-card.module.scss";
 
-const MovieCard = ({
-  data: { title, poster_path, release_date, original_language },
-  onClick,
-}) => {
+type IProps = { movie: IMovie; onClick: () => void };
+
+const MovieCard: React.FC<IProps> = ({ movie, onClick }) => {
   const [{ configurations }] = useGlobalContext();
+  const { title, poster_path, release_date, original_language } = movie;
 
   return (
     <div onClick={onClick} className={styles.MovieCard}>

@@ -1,8 +1,7 @@
-import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/home/home";
-import MyList from "./pages/my-list/my-list";
-import { GlobalContextProvider } from "./services/global-state";
+import Home from "./pages/home";
+import MyList from "./pages/my-list";
+import { GlobalContextProvider } from "./services/global-state/context";
 import "./scss/global.scss";
 
 function App() {
@@ -17,4 +16,3 @@ function App() {
 }
 
 export default App;
-
