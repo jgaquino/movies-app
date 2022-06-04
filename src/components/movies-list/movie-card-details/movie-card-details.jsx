@@ -5,6 +5,7 @@ import Rating from "./rating";
 import { AiFillCloseCircle } from "react-icons/ai";
 import posterNotFound from "../../../assets/poster-holder.jpg";
 import styles from "./movie-card-details.module.scss";
+import { useLocation } from "react-router-dom";
 
 const MovieCardDetails = ({
   data: {
@@ -19,9 +20,9 @@ const MovieCardDetails = ({
   },
   onClose,
 }) => {
+  const location = useLocation();
   const [{ configurations, reviews }, dispatch] = useGlobalContext();
   const [review, setReview] = useState({ rating: 3, message: "", id });
-
   const reviewExist = reviews.find((r) => r.id === id);
 
   const submitReview = useCallback(
@@ -70,7 +71,8 @@ const MovieCardDetails = ({
               </div>
             </article>
             <hr />
-            {!reviewExist ? (
+
+            {!reviewExist && (
               <form onSubmit={submitReview}>
                 <p>Your feedback</p>
                 <div>
@@ -95,8 +97,16 @@ const MovieCardDetails = ({
                 ></textarea>
                 <button type="submit">Send feedback</button>
               </form>
-            ) : (
+            )}
+            {reviewExist && location.pathname != "/my-list" && (
               <small>Thank you for your feedback :)</small>
+            )}
+            {reviewExist && location.pathname === "/my-list" && (
+              <section>
+                <h3>Your feedback</h3>
+                <Rating value={reviewExist.rating} readOnly />
+                <p>{reviewExist.message}</p>
+              </section>
             )}
           </aside>
         </main>

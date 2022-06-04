@@ -7,11 +7,13 @@ import { useGlobalContext } from "../../services/global-state";
 const MyList = () => {
   const [{ movies, reviews }] = useGlobalContext();
 
-  console.log(reviews, movies);
+  const moviesWithReview = movies.filter((m) =>
+    reviews.find((r) => r.id === m.id)
+  );
   return (
     <div>
       <Topbar location="my-list" />
-      <MoviesList movies={movies} />
+      <MoviesList movies={moviesWithReview} />
       <Footer />
     </div>
   );
