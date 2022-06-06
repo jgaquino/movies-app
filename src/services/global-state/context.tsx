@@ -52,7 +52,7 @@ export const GlobalContextProvider: React.FC<IProps> = ({ children }) => {
       });
   }, []);
 
-  if (!globalState.movies) return <p>Movies does not exist</p>;
+  if (!globalState.movies) return <></>;
 
   return (
     <GlobalContext.Provider value={[globalState, dispatch]}>

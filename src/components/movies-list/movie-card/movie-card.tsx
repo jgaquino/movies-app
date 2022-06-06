@@ -4,7 +4,7 @@ import { useGlobalContext } from "../../../services/global-state/context";
 import posterNotFound from "../../../assets/poster-holder.jpg";
 import styles from "./movie-card.module.scss";
 
-type IProps = { movie: IMovie; onClick: () => void };
+type IProps = { movie: IMovie; onClick?: () => void };
 
 const MovieCard: React.FC<IProps> = ({ movie, onClick }) => {
   const [{ configurations }] = useGlobalContext();

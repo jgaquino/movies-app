@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { IMovie } from "../../helpers/entities";
 import { useGlobalContext } from "../../services/global-state/context";
 import Topbar from "../../components/topbar";
@@ -13,9 +13,16 @@ const Home: React.FC = () => {
   const [moveIdSelected, setMovieIdSelected] = useState<number | null>(null);
   const { moviesFiltered, setSearchValue, loading } = useSearch();
 
-  const movieHighlighted = movies?.reduce(function (prev, current) {
-    return prev.vote_average > current.vote_average ? prev : current;
-  }) as IMovie;
+  const movieHighlighted = movies
+    ?.filter((m) => m.backdrop_path)
+    .reduce(function (prev, current) {
+      return prev.vote_average > current.vote_average ? prev : current;
+    }) as IMovie;
+
+  const currentMovies = useMemo(
+    () => (moviesFiltered ? moviesFiltered : movies),
+    [moviesFiltered, movies]
+  );
 
   return (
     <>
@@ -32,14 +39,14 @@ const Home: React.FC = () => {
 
       <MoviesList
         location="home"
-        movies={moviesFiltered ? moviesFiltered : movies}
+        movies={currentMovies}
         loading={loading}
         onMovieSelected={(moveId) => setMovieIdSelected(moveId)}
       />
 
       {moveIdSelected && movies && (
         <MovieCardDetails
-          movie={movies.find((m) => m.id === moveIdSelected) as IMovie}
+          movie={currentMovies?.find((m) => m.id === moveIdSelected) as IMovie}
           onClose={() => setMovieIdSelected(null)}
         />
       )}
